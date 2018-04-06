@@ -1,0 +1,18 @@
+
+url: http://lachlandeer.github.io/demandr
+
+authors:
+  Lachlan Deer:
+    href: http://lachlandeer.github.io
+  Christian Oertel:
+    href: http://www.econ.uzh.ch/en/people/graduatestudents/oertel.html
+
+template:
+  params:
+      bootswatch: flatly
+    # docsearch:
+    #   api_key: fbd8d79ed49f21fc9ca7b2cf601a3f5b
+    #   index_name: pkgdown
+
+development:
+  mode: unreleased
