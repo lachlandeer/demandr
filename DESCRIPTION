@@ -3,12 +3,10 @@ Title: What the Package Does (one line, title case)
 Version: 0.0.0.9000
 Authors@R: c(
     person("Lachlan", "Deer", email = "lachlan.deer@gmail.com", role = c("aut", "cre")),
-    person("Christian", "Oertel", email = "christianoertel.co@gmail.com", role = c("aut", "cre"))
+    person("Christian", "Oertel", email = "christianoertel.co@gmail.com", role = c("aut"))
     )
-Maintainer: c(
-    Lachlan Deer <lachlan.deer@gmail.com>,
-    Christian Oertel <christianoertel.co@gmail.com>
-    )
+Maintainer:
+    Lachlan Deer <lachlan.deer@gmail.com>
 Description: To be Done.
 Depends: R (>= 3.4.3)
 License: MIT + file LICENSE
