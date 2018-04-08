@@ -18,6 +18,6 @@
 #'
 #' @docType data
 #' @name jets
-#' @usage data('dm')
+#' @usage data('jets')
 #' @examples  str(jets)
 "jets"
