@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • demandr</title>
+<title>jets: Annual Sales of Corporate Jets — jets • demandr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,7 +25,10 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="jets: Annual Sales of Corporate Jets — jets" />
+
+<meta property="og:description" content="Annual model-level aircraft sales in the large-cabin segment of the businessjet market between 1985 and 1998." />
+<meta name="twitter:card" content="summary" />
 
 
 <!-- mathjax -->
@@ -42,7 +45,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -88,53 +91,55 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>jets: Annual Sales of Corporate Jets</h1>
+    <small>Source: <a href='https://github.com/lachlandeer/demandr/blob/master/R/data-jets.R'><code>R/data-jets.R</code></a></small>
+    <div class="hidden name"><code>jets.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    
+    <p>Annual model-level aircraft sales in the large-cabin segment of the businessjet market between 1985 and 1998.</p>
+    
 
-    <colgroup>
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>data</span>(<span class='st'>'jets'</span>)</pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        <!--  -->
-        <td>
-          <p><code><a href="analgesics.html">analgesics</a></code> </p>
-        </td>
-        <td><p>analgesics: Weekly Sales of OTC Analgesics</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="eurocars.html">eurocars</a></code> </p>
-        </td>
-        <td><p>eurocars: Annual Sales of Cars in Europe</p></td>
-      </tr><tr>
-        <!--  -->
-        <td>
-          <p><code><a href="jets.html">jets</a></code> </p>
-        </td>
-        <td><p>jets: Annual Sales of Corporate Jets</p></td>
-      </tr>
-    </tbody>
-    </table>
+    <p>A data.frame with 56 observations on 9 variables:</p><ul>
+<li><p><strong>model_id:</strong> Numeric identifier for model of aircraft</p></li>
+<li><p><strong>manufacturer_id:</strong> Numeric identifier for manufacturer of aircraft</p></li>
+<li><p><strong>year:</strong> Year of the observation</p></li>
+<li><p><strong>price:</strong> Price in millions of US dollars</p></li>
+<li><p><strong>quantity:</strong> Units sold</p></li>
+<li><p><strong>max_range:</strong> Range in miles</p></li>
+<li><p><strong>speed:</strong> Speed in miles per hour</p></li>
+<li><p><strong>cabin_volume:</strong> Cabin Space in cubic feet</p></li>
+<li><p><strong>brand:</strong> Manufacturer</p></li>
+</ul>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'> <span class='fu'>str</span>(<span class='no'>jets</span>)</div><div class='output co'>#&gt; Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	56 obs. of  9 variables:
+#&gt;  $ model_id       : int  11 11 11 11 11 11 11 11 11 11 ...
+#&gt;  $ manufacturer_id: num  1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ year           : int  1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 ...
+#&gt;  $ price          : num  12.9 13.1 14.9 15.3 15.8 16.3 16.9 17.5 18.4 18.9 ...
+#&gt;  $ quantity       : int  13 18 15 22 20 28 18 22 20 25 ...
+#&gt;  $ max_range      : int  3030 3030 3030 3030 3030 3030 3030 3030 3030 3030 ...
+#&gt;  $ speed          : int  421 421 421 421 421 421 421 421 421 421 ...
+#&gt;  $ cabin_volume   : int  1035 1035 1035 1035 1035 1035 1035 1035 1035 1035 ...
+#&gt;  $ brands         : Factor w/ 3 levels "Bombardier","Dassault",..: 1 1 1 1 1 1 1 1 1 1 ...</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      
+      <li><a href="#format">Format</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
