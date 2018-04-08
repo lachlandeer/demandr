@@ -23,3 +23,5 @@ brand_data <- data.frame(manu_ids, brands)
 
 jets <- jets %>%
             left_join(brand_data, by = c("manufacturer_id" = "manu_ids"))
+
+devtools::use_data(jets, overwrite = TRUE, compress = 'xz')
