@@ -3,8 +3,6 @@
 library(magrittr)
 library(dplyr)
 
-
-eurocars2 <- haven::read_dta("data-raw/eurocars.dta")
 eurocars <- readxl::read_xlsx("data-raw/eurocars.xlsx")
 
 eurocars <- eurocars %>%
