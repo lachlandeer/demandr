@@ -11,7 +11,8 @@ analgesics <- analgesics %>%
                        sales = sales_,
                        customers = count,
                        price = price_,
-                       promption = prom_,
-                       wholesale_price = cost_)
+                       promotion = prom_,
+                       wholesale_price = cost_) %>%
+                mutate(promotion = if_else(promotion > 0, TRUE, FALSE))
 
 devtools::use_data(analgesics, overwrite = TRUE, compress = 'xz')
