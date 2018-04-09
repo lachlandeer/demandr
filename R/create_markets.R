@@ -1,5 +1,5 @@
 # this function maps market ids into a list so they are
-#consistently unpacked
+# consistently unpacked
 
 create_markets <- function(geog_id, time_id){
     markets <- list()
