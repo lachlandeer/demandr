@@ -16,4 +16,5 @@ BugReports: https://github.com/lachlandeer/demandr/issues
 URL: http://lachlandeer.github.io/demandr, https://github.com/lachlandeer/demandr
 RoxygenNote: 6.0.1
 Imports: dplyr,
-    rlang
+    rlang,
+    magrittr
