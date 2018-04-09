@@ -3,10 +3,14 @@ compute_outside_share <- function(mkt_shares, market_id, data_frame) {
     # use pipe without loading package
     `%>%` <- magrittr::`%>%`
 
-    print(paste("Grouping by Geographic ID:", market_id[["geog_id"]],
+    #if (is.null(market_id[["geog_id"]]) == FALSE) {
+        print(paste("Grouping by Geographic ID:", market_id[["geog_id"]],
+    #        sep = " "))
+        }
+    #if (is.null(market_id[["geog_id"]]) == FALSE ) {
+        print(paste("Grouping by Time ID      :", market_id[["time_id"]],
             sep = " "))
-    print(paste("Grouping by Time ID      :", market_id[["time_id"]],
-            sep = " "))
+    #    }
 
     # unpack market_ids to a vector so can group by easily
     markets <- unlist(market_id)
