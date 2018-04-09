@@ -1,6 +1,7 @@
-library(dplyr)
-
 compute_outside_share <- function(mkt_shares, market_id, data_frame) {
+
+    # use pipe without loading package
+    `%>%` <- magrittr::`%>%`
 
     print(paste("Grouping by Geographic ID:", market_id[["geog_id"]],
             sep = " "))
@@ -18,7 +19,8 @@ compute_outside_share <- function(mkt_shares, market_id, data_frame) {
             dplyr::mutate(inside_share = sum(!!! rlang::sym(mkt_shares))) %>%
             dplyr::mutate(outside_share = 1 - inside_share) %>%
             # clean up columns we don't want returned
-            dplyr::select(-inside_share, -geog_id, -time_id)
+            dplyr::select(-inside_share)
+            #dplyr::select(-inside_share, -geog_id, -time_id)
 
     return(df)
 }
