@@ -5,8 +5,8 @@ compute_outside_share <- function(mkt_shares, market_id, data_frame) {
 
     #if (is.null(market_id[["geog_id"]]) == FALSE) {
         print(paste("Grouping by Geographic ID:", market_id[["geog_id"]],
-    #        sep = " "))
-        }
+            sep = " "))
+    #    }
     #if (is.null(market_id[["geog_id"]]) == FALSE ) {
         print(paste("Grouping by Time ID      :", market_id[["time_id"]],
             sep = " "))
@@ -25,6 +25,7 @@ compute_outside_share <- function(mkt_shares, market_id, data_frame) {
             # clean up columns we don't want returned
             dplyr::select(-inside_share)
             #dplyr::select(-inside_share, -geog_id, -time_id)
+            ## TODO: add asserts that shares are between zero and one
 
     return(df)
 }
