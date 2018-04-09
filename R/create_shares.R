@@ -29,3 +29,27 @@ compute_outside_share <- function(mkt_shares, market_id, data_frame) {
 
     return(df)
 }
+
+
+compute_outside_share2 <- function(df, mkt_shares, market_id) {
+
+    # use pipe without loading package
+    `%>%` <- magrittr::`%>%`
+
+    # unpack market_ids to a vector so can group by easily
+    markets <- unlist(market_id)
+
+    #df <- data_frame
+
+    # generate outside shares
+    outside_share <- df %>%
+            dplyr::group_by(!!! rlang::syms(markets)) %>%
+            dplyr::mutate(inside_share = sum(!!! rlang::sym(mkt_shares))) %>%
+            dplyr::mutate(outside_share = 1 - inside_share) %>%
+            # clean up columns we don't want returned
+            #ungroup() %>%
+            #dplyr::select(outside_share)
+            ## TODO: add asserts that shares are between zero and one
+
+    #return(outside_share)
+}
