@@ -1,7 +1,7 @@
 
 ### --- Generate aggregate market shares per nest and subnest
 
-gen_nest_shares <- function(df,mkt_shares,market_id,nest_id){
+gen_nest_shares <- function(df, mkt_shares, market_id, nest_id){
   t_id <- df[[market_id[["time_id"]]]]
   geo_id <- df[[market_id[["geog_id"]]]]
   nest_shares <- aggregate(mkt_shares, by=list(t_id=t_id,geo_id=geo_id,nest_id=nest_id), FUN=sum)
