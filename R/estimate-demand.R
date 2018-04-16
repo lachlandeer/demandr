@@ -23,15 +23,15 @@ create_lhs <- function(exog_charac, price, nest_shares){
 
 create_fe <- function(market_ids, market_fe = "both"){
 
-    if(marketFE = "both"){
+    if(marketFE == "both"){
         mkt_fe <- unlist(market_ids)
         mkt_fe <- paste(mkt_fe, collapse = "+")
         return(mkt_fe)
-    } else if(marketFE = "geog") {
-        mkt_fe <- market_ids$[[geog_id]]
+    } else if(marketFE == "geog") {
+        mkt_fe <- market_ids[[geog_id]]
         return(mkt_fe)
-    } else if (marketFE = "time"){
-        mkt_fe <- market_ids$[[time_id]]
+    } else if (marketFE == "time"){
+        mkt_fe <- market_ids[[time_id]]
         return(mkt_fe)
     }
 
