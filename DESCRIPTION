@@ -17,4 +17,5 @@ URL: http://lachlandeer.github.io/demandr, https://github.com/lachlandeer/demand
 RoxygenNote: 6.0.1
 Imports: dplyr,
     rlang,
-    magrittr
+    magrittr,
+    lfe
