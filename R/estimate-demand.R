@@ -16,21 +16,21 @@
 # }
 
 create_lhs <- function(exog_charac, price, nest_shares){
-    lhs_variables <- cbind(exog_charac, price, nest_shares)
+    lhs_variables <- c(exog_charac, price, nest_shares)
     lhs_formula   <- paste(lhs_variables, collapse = "+")
     return(lhs_formula)
 }
 
 create_fe <- function(market_ids, market_fe = "both"){
 
-    if(marketFE == "both"){
+    if(market_fe == "both"){
         mkt_fe <- unlist(market_ids)
         mkt_fe <- paste(mkt_fe, collapse = "+")
         return(mkt_fe)
-    } else if(marketFE == "geog") {
+    } else if(market_fe == "geog") {
         mkt_fe <- market_ids[[geog_id]]
         return(mkt_fe)
-    } else if (marketFE == "time"){
+    } else if (market_fe == "time"){
         mkt_fe <- market_ids[[time_id]]
         return(mkt_fe)
     }
@@ -55,13 +55,14 @@ create_equation <- function(market_ids,
                             marketFE = "both"){
 
 
-     y <- create_rhs(market_share, outside_share)
-     lhs_charac <- create_lhs(exog_charac, price, nest_shares)
-     create_fe <- function(market_ids, market_fe = marketFE)
+     y             <- create_rhs(market_share, outside_share)
+     lhs_charac    <- create_lhs(exog_charac, price, nest_shares)
+     fixed_effects <- create_fe(market_ids, market_fe = marketFE)
 
     if (is.null(instruments)){
         est_eq <- paste(dep_var, lhs_formula, sep = "~")
-        est_eq_fe <- as.formula(paste(est_eq, market_fe, sep = "|"))
+        est_eq_fe <- as.formula(paste(est_eq, fixed_effects, sep = "|"))
     }
 
+    return(est_eq_fe)
 }
