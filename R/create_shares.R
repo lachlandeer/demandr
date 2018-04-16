@@ -52,10 +52,33 @@ gen_subnest_shares <- function(df, mkt_shares, market_id, nest_id, subnest_id){
 }
 
 gen_within_shares <- function(df, mkt_share, nest_share, subnest_share){
+    # if one level of nesting
+    if(is.null(subnest_share)){
+        within_shares_one_nest(df, mkt_share, nest_share)
+    }
+
+    # if two levels of nesting
+    if(!is.null(subnest_share)){
+        within_shares_two_nest(df, mkt_share, nest_share, subnest_share)
+    }
+} # eof
+
+# shares for two level nests
+within_shares_two_nest <- function(df, mkt_share, nest_share, subnest_share){
     output <- df %>%
                 mutate(within_subnest = (!!rlang::sym(mkt_share)) /
                                             (!!rlang::sym(subnest_share)),
                        within_nest    = (!!rlang::sym(subnest_share)) /
+                                            (!!rlang::sym(nest_share))
+                    )
+    return(output)
+}
+
+# shares for one level nests
+within_shares_one_nest <- function(df, mkt_share, nest_share){
+    output <- df %>%
+                mutate(
+                       within_nest    = (!!rlang::sym(mkt_share)) /
                                             (!!rlang::sym(nest_share))
                     )
     return(output)
