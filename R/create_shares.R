@@ -50,3 +50,13 @@ gen_subnest_shares <- function(df, mkt_shares, market_id, nest_id, subnest_id){
             dplyr::mutate(subnest_shares = sum(!!! rlang::sym(mkt_shares))) %>%
             ungroup()
 }
+
+gen_within_shares <- function(df, mkt_share, nest_share, subnest_share){
+    output <- df %>%
+                mutate(within_subnest = (!!rlang::sym(mkt_share)) /
+                                            (!!rlang::sym(subnest_share)),
+                       within_nest    = (!!rlang::sym(subnest_share)) /
+                                            (!!rlang::sym(nest_share))
+                    )
+    return(output)
+}
