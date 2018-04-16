@@ -84,26 +84,32 @@ within_share_one_nest <- function(df, mkt_share, nest_share){
     return(output)
 }
 
-create_share <- function(){
+create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
+                         nest_id = NULL, subnest_id = NULL){
 
     # generate outside share if needed
     if(is.null(outside_share)){
+        print("Creating Outside Share")
         df <- df %>%
                 compute_outside_share(., mkt_share, market_id)
     }
 
     # generate nest share for one level nest
     if(!is.null(nest_id) && is.null(subnest_id)){
+        print("Working with one layer of nests")
         df <- df %>%
                 gen_nest_share(., mkt_share, market_id, nest_id) %>%
-                gen_within_share(., mkt_share, nest_share, subnest_share)
+                gen_within_share(., mkt_share, nest_share = nest_share,
+                                    subnest_share = NULL)
     }
 
     if(!is.null(nest_id) && !is.null(subnest_id)){
+        print("Working with two layers of nests")
         df <- df %>%
                 gen_nest_share(., mkt_share, market_id, nest_id) %>%
                 gen_subnest_share(., mkt_share, market_id, nest_id, subnest_id)
-                gen_within_share(., mkt_share, nest_share, subnest_share)
+                gen_within_share(., mkt_share, nest_share = nest_share,
+                                subnest_share = subnest_share)
     }
 
     return(df)
