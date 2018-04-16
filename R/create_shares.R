@@ -51,7 +51,7 @@ gen_subnest_shares <- function(df, mkt_shares, market_id, nest_id, subnest_id){
             ungroup()
 }
 
-gen_within_shares <- function(df, mkt_share, nest_share, subnest_share){
+gen_within_shares <- function(df, mkt_share, nest_share, subnest_share = NULL){
     # if one level of nesting
     if(is.null(subnest_share)){
         within_shares_one_nest(df, mkt_share, nest_share)
@@ -82,4 +82,29 @@ within_shares_one_nest <- function(df, mkt_share, nest_share){
                                             (!!rlang::sym(nest_share))
                     )
     return(output)
+}
+
+create_shares <- function(){
+
+    # generate outside share if needed
+    if(is.null(outside_share)){
+        df <- df %>%
+                compute_outside_share(., mkt_shares, market_id)
+    }
+
+    # generate nest shares for one level nest
+    if(!is.null(nest_id) && is.null(subnest_id)){
+        df <- df %>%
+                gen_nest_shares(., mkt_share, market_id, nest_id) %>%
+                gen_within_shares(., mkt_share, nest_share, subnest_share)
+    }
+
+    if(!is.null(nest_id) && !is.null(subnest_id)){
+        df <- df %>%
+                gen_nest_shares(., mkt_share, market_id, nest_id) %>%
+                gen_subnest_shares(., mkt_shares, market_id, nest_id, subnest_id)
+                gen_within_shares(., mkt_share, nest_share, subnest_share)
+    }
+
+    return(df)
 }
