@@ -41,7 +41,7 @@ create_rhs <- function(mkt_share, out_share){
     log_mktshare <- paste0("log(", mkt_share, ")")
     log_outshare <- paste0("log(", out_share, ")")
 
-    dep_var <- paste(log_mktshare, log_outshare, collapse = "-")
+    dep_var <- paste(log_mktshare, log_outshare, sep = "-")
     return(dep_var)
 }
 
@@ -60,7 +60,7 @@ create_equation <- function(market_ids,
      fixed_effects <- create_fe(market_ids, market_fe = marketFE)
 
     if (is.null(instruments)){
-        est_eq <- paste(dep_var, lhs_formula, sep = "~")
+        est_eq <- paste(y, lhs_charac, sep = "~")
         est_eq_fe <- as.formula(paste(est_eq, fixed_effects, sep = "|"))
     }
 
