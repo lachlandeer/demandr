@@ -1,19 +1,30 @@
 ## DOCUMENTATION!
 
-# estimate_demand <- function(df,
-#                             market_ids,
-#                             market_share,
-#                             outside_share,
-#                             exog_charac,
-#                             price,
-#                             nest_shares,
-#                             instruments = NULL,
-#                             marketFE = "both"
-#                             supply_side = FALSE
-#                             ){
-#
-#
-# }
+estimate_demand <- function(df,
+                            market_ids,
+                            market_share,
+                            outside_share,
+                            exog_charac,
+                            price,
+                            nest_shares,
+                            instruments = NULL,
+                            marketFE = "both",
+                            supply_side = FALSE
+                            ){
+    if(supply_side == FALSE){
+        estimating_equation <- create_equation(market_ids,
+                                                market_share,
+                                                outside_share,
+                                                exog_charac,
+                                                price,
+                                                nest_shares,
+                                                instruments,
+                                                marketFE)
+
+        output <- lfe::felm(estimating_equation, data = df)
+        return(output)
+    }
+}
 
 create_lhs <- function(exog_charac, price, nest_shares){
     lhs_variables <- c(exog_charac, price, nest_shares)
