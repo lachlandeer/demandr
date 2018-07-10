@@ -22,7 +22,7 @@ estimate_demand <- function(df,
                                                 instruments,
                                                 marketFE)
 
-        output <- lfe::felm(estimating_equation, data = df)
+        output <- lm(estimating_equation, data = df)
         return(output)
     }
 }
@@ -37,13 +37,14 @@ create_fe <- function(market_ids, market_fe = "both"){
 
     if(market_fe == "both"){
         mkt_fe <- unlist(market_ids)
+        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids), ")", sep = "")[[1]]
         mkt_fe <- paste(mkt_fe, collapse = "+")
         return(mkt_fe)
     } else if(market_fe == "geog") {
-        mkt_fe <- market_ids[[geog_id]]
+        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids[[geog_id]]), ")", sep = "")[[1]]
         return(mkt_fe)
     } else if (market_fe == "time"){
-        mkt_fe <- market_ids[[time_id]]
+        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids[[time_id]]), ")", sep = "")[[1]]
         return(mkt_fe)
     }
 
@@ -73,7 +74,7 @@ create_equation <- function(market_ids,
 
     if (is.null(instruments)){
         est_eq <- paste(y, lhs_charac, sep = "~")
-        est_eq_fe <- as.formula(paste(est_eq, fixed_effects, sep = "|"))
+        est_eq_fe <- as.formula(paste(est_eq, fixed_effects, sep = "+"))
     }
 
     return(est_eq_fe)
