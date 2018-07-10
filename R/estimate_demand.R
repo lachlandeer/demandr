@@ -6,7 +6,7 @@ estimate_demand <- function(df,
                             outside_share,
                             exog_charac,
                             price,
-                            nest_shares,
+                            nest_shares = NULL,
                             instruments = NULL,
                             marketFE = "both",
                             supply_side = FALSE
