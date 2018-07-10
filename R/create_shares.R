@@ -106,7 +106,8 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
         df <- df %>%
                 gen_nest_share(., mkt_share, market_id, nest_id) %>%
                 gen_within_share(., mkt_share, nest_share = "nest_share",
-                                 subnest_share = NULL)
+                                 subnest_share = NULL) %>%
+            select(-nest_share)
     }
 
     if(!is.null(nest_id) && !is.null(subnest_id)){
@@ -118,7 +119,8 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
                 gen_subnest_share(., mkt_share, market_id,
                                     nest_id, subnest_id) %>%
                 gen_within_share(., mkt_share, nest_share = "nest_share",
-                                subnest_share = "subnest_share")
+                                subnest_share = "subnest_share") %>%
+                select(-nest_share, -subnest_share)
 
     }
 
