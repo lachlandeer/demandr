@@ -127,3 +127,13 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
 
     return(df)
 }
+
+mkt_share_from_sales <- function(df, sales, population, adjust_factor = 1){
+    
+    output <- df %>%
+        mutate(
+            mkt_share    = !!rlang::sym(sales) /
+                            (adjust_factor * !!rlang::sym(population))
+        )
+    return(output)
+}
