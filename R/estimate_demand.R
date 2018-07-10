@@ -11,7 +11,8 @@ estimate_demand <- function(df,
                             marketFE = "both",
                             supply_side = FALSE
                             ){
-    if(supply_side == FALSE){
+    # estimate OLS Model with no supply side
+    if(supply_side == FALSE && is.null(instruments)){
         estimating_equation <- create_equation(market_ids,
                                                 market_share,
                                                 outside_share,
