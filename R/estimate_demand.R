@@ -41,10 +41,10 @@ create_fe <- function(market_ids, market_fe = "both"){
         mkt_fe <- paste(mkt_fe, collapse = "+")
         return(mkt_fe)
     } else if(market_fe == "geog") {
-        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids[[geog_id]]), ")", sep = "")[[1]]
+        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids$geog_id), ")", sep = "")[[1]]
         return(mkt_fe)
     } else if (market_fe == "time"){
-        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids[[time_id]]), ")", sep = "")[[1]]
+        mkt_fe <- lapply("as.factor(", paste, unlist(mkt_ids$time_id), ")", sep = "")[[1]]
         return(mkt_fe)
     }
 
