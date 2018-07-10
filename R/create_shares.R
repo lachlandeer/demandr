@@ -1,8 +1,10 @@
 ## documentation needed
+
+# use pipe without loading package
+`%>%` <- magrittr::`%>%`
+
 compute_outside_share <- function(df, mkt_share, market_id) {
 
-    # use pipe without loading package
-    `%>%` <- magrittr::`%>%`
 
     # unpack market_ids to a vector so can group by easily
     markets <- unlist(market_id)
@@ -21,8 +23,6 @@ compute_outside_share <- function(df, mkt_share, market_id) {
 
 ## dplyr approach to nest share (testing)
 gen_nest_share <- function(df, mkt_share, market_id, nest_id){
-    # use pipe without loading package
-    `%>%` <- magrittr::`%>%`
 
     # unpack market_ids to a vector so can group by easily
     markets <- unlist(market_id)
@@ -37,8 +37,6 @@ gen_nest_share <- function(df, mkt_share, market_id, nest_id){
 
 ## dplyr approach to subnest share (testing)
 gen_subnest_share <- function(df, mkt_share, market_id, nest_id, subnest_id){
-    # use pipe without loading package
-    `%>%` <- magrittr::`%>%`
 
     # unpack market_ids to a vector so can group by easily
     markets <- unlist(market_id)
