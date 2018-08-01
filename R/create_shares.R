@@ -1,5 +1,3 @@
-## documentation needed
-
 # use pipe without loading package
 `%>%` <- magrittr::`%>%`
 
