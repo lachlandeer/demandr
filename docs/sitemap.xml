@@ -7,7 +7,19 @@
     <loc>http://lachlandeer.github.io/demandr/reference/compute_outside_share.html</loc>
   </url>
   <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/create_equation.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/create_fe.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/create_lhs.html</loc>
+  </url>
+  <url>
     <loc>http://lachlandeer.github.io/demandr/reference/create_markets.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/create_rhs.html</loc>
   </url>
   <url>
     <loc>http://lachlandeer.github.io/demandr/reference/create_shares.html</loc>
