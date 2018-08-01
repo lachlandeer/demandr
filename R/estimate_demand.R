@@ -27,12 +27,25 @@ estimate_demand <- function(df,
     }
 }
 
+#' Create Left Hand Side of Regression Equation
+#'
+#' @param exog_charac Vector of exogenous product characteristic variables, as a character vector
+#' @param price Variable containing market price, as a character string
+#' @param nest_shares Vector of nest share variables, as a character vector
+#'
+#' @return A character string with a partial formula of product characteristics and nest shares.
 create_lhs <- function(exog_charac, price, nest_shares){
     lhs_variables <- c(exog_charac, price, nest_shares)
     lhs_formula   <- paste(lhs_variables, collapse = "+")
     return(lhs_formula)
 }
 
+#' Create Partial Formula for Fixed Effects
+#'
+#' @param market_ids List of variables contaning market identifiers
+#' @param market_fe Character string of which market fixed effects to contain,
+#'
+#' @return A character string with a partial formula for market fixed effetcs.
 create_fe <- function(market_ids, market_fe = "both"){
 
     if(market_fe == "both"){
@@ -50,6 +63,12 @@ create_fe <- function(market_ids, market_fe = "both"){
 
 }
 
+#' Create Regression Equation for Demand Estimation
+#'
+#' @param mkt_share Variable containing product market shares, as a character string
+#' @param out_share Variable containing outside market shares, as a character string
+#'
+#' @return A character string with name of dependent variable.
 create_rhs <- function(mkt_share, out_share){
     log_mktshare <- paste0("log(", mkt_share, ")")
     log_outshare <- paste0("log(", out_share, ")")
@@ -58,6 +77,19 @@ create_rhs <- function(mkt_share, out_share){
     return(dep_var)
 }
 
+#' Create Regression Equation for Demand Estimation
+#'
+#' @param market_ids List of variables contaning market identifiers
+#' @param market_share Variable containing product market shares, as a character string
+#' @param outside_share Variable containing outside market shares, as a character string
+#' @param exog_charac Vector of exogenous product characteristic variables, as a character vector
+#' @param price Variable containing market price, as a character string
+#' @param nest_shares Vector of nest share variables, as a character vector
+#' @param instruments Vector of instrument names, as a character vector
+#' @param marketFE Character string of which market fixed effects to contain,
+#'        takes value "both", "geog" or "time"
+#'
+#' @return A regression formula.
 create_equation <- function(market_ids,
                             market_share,
                             outside_share,
