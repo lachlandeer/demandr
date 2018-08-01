@@ -3,22 +3,36 @@
 # use pipe without loading package
 `%>%` <- magrittr::`%>%`
 
+#' Compute Share of Outside Good
+#'
+#' @param df Dataframe to work with
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param market_id List of variables contaning market identifiers
+#' @return A dataframe with the variable \code{outside_share} added as a column.
+#'
+#' @export
+#'
+#' @examples
+#' # Add Outside Share column to data
+#' mkts <- create_markets(geog_id = "market_id", time_id = "year")
+#' df   <- mkt_share_from_sales(eurocars,
+#'                                quantity   = 'qty_sold',
+#'                                population = 'population')
+#' df2  <- compute_outside_share(df, mkt_share = 'mkt_share', market_id = mkts)
 compute_outside_share <- function(df, mkt_share, market_id) {
-
-
     # unpack market_ids to a vector so can group by easily
     markets <- unlist(market_id)
-
     # generate outside share
     outside_share <- df %>%
             dplyr::group_by(!!! rlang::syms(markets)) %>%
             dplyr::mutate(inside_share = sum(!!! rlang::sym(mkt_share))) %>%
             dplyr::mutate(outside_share = 1 - inside_share) %>%
             # ungroup the data and clean up columns we don't want returned
-            ungroup() %>%
+            dplyr::ungroup() %>%
             dplyr::select(-inside_share)
             ## TODO: add asserts that share are between zero and one
 
+    return(outside_share)
 }
 
 ## dplyr approach to nest share (testing)
@@ -96,7 +110,7 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
         df <- df %>%
                 compute_outside_share(., mkt_share, market_id)
         print("Done!")
-    }
+    } # end if
     # generate nest share for one level nest
     if(!is.null(nest_id) && is.null(subnest_id)){
         print("Working with one layer of nests...")
@@ -106,7 +120,7 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
                 gen_within_share(., mkt_share, nest_share = "nest_share",
                                  subnest_share = NULL) %>%
             select(-nest_share)
-    }
+    } #end if
 
     if(!is.null(nest_id) && !is.null(subnest_id)){
         print("Working with two layers of nests...")
@@ -120,9 +134,7 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
                                 subnest_share = "subnest_share") %>%
                 select(-nest_share, -subnest_share)
 
-    }
-
-
+    } # endif
     return(df)
 }
 
