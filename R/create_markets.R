@@ -1,4 +1,4 @@
-#' Add together two numbers.
+#' Create list if market identifiers.
 #'
 #' @param geog_id Variable that represents geographical market identifier as a string.
 #' @param time_id Variable that represents time identifier as a string.
