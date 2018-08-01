@@ -120,9 +120,9 @@
     <p>Estimate a Demand Model From Aggregate Market Shares</p>
     
 
-    <pre class="usage"><span class='fu'>estimate_demand</span>(<span class='no'>df</span>, <span class='no'>market_ids</span>, <span class='no'>market_share</span>, <span class='no'>outside_share</span>, <span class='no'>exog_charac</span>, <span class='no'>price</span>,
-  <span class='kw'>nest_shares</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>instruments</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>marketFE</span> <span class='kw'>=</span> <span class='st'>"both"</span>,
-  <span class='kw'>supply_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>estimate_demand</span>(<span class='no'>df</span>, <span class='no'>market_ids</span>, <span class='no'>product_id</span>, <span class='no'>market_share</span>, <span class='no'>outside_share</span>,
+  <span class='no'>exog_charac</span>, <span class='no'>price</span>, <span class='kw'>nest_shares</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>instruments</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>productFE</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>marketFE</span> <span class='kw'>=</span> <span class='st'>"both"</span>, <span class='kw'>supply_side</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -134,6 +134,10 @@
     <tr>
       <th>market_ids</th>
       <td><p>List of variables contaning market identifiers</p></td>
+    </tr>
+    <tr>
+      <th>product_id</th>
+      <td><p>Variable containing product identifier</p></td>
     </tr>
     <tr>
       <th>market_share</th>
@@ -158,6 +162,10 @@
     <tr>
       <th>instruments</th>
       <td><p>Vector of instrument names, as a character vector - NOT CURRENTLY IMPLEMENTED</p></td>
+    </tr>
+    <tr>
+      <th>productFE</th>
+      <td><p>Logical variable, <code>TRUE</code> leads to estimation with product fixed effects</p></td>
     </tr>
     <tr>
       <th>marketFE</th>
@@ -192,12 +200,14 @@ constraints from a Bertrand-Nash Oligopoly Model - NOT CURRENTLY IMPLEMENTED</p>
 #&gt; [1] "Done!"</div><div class='input'><span class='co'>## Run regression</span>
 <span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'>estimate_demand</span>(<span class='kw'>df</span>             <span class='kw'>=</span> <span class='no'>df2</span>,
                         <span class='kw'>market_ids</span>    <span class='kw'>=</span> <span class='no'>mkts</span>,
+                        <span class='kw'>product_id</span>    <span class='kw'>=</span> <span class='st'>'model_id2'</span>,
                         <span class='kw'>market_share</span>  <span class='kw'>=</span> <span class='no'>mkt_share</span>,
                         <span class='kw'>outside_share</span> <span class='kw'>=</span> <span class='no'>outside_share</span>,
                         <span class='kw'>exog_charac</span>   <span class='kw'>=</span> <span class='no'>exog_var</span>,
                         <span class='kw'>price</span>         <span class='kw'>=</span> <span class='no'>price_var</span>,
-                        <span class='kw'>marketFE</span>      <span class='kw'>=</span> <span class='st'>"both"</span>)
-
+                        <span class='kw'>marketFE</span>      <span class='kw'>=</span> <span class='st'>"both"</span>,
+                        <span class='kw'>productFE</span>     <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "Estimation With Geographic and Time Fixed Effects"
+#&gt; [1] "Estimation With Product Fixed Effects"</div><div class='input'>
 <span class='co'># Regression With One Level Nest</span>
 <span class='no'>mkts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_markets.html'>create_markets</a></span>(<span class='kw'>geog_id</span> <span class='kw'>=</span> <span class='st'>"market_id"</span>, <span class='kw'>time_id</span> <span class='kw'>=</span> <span class='st'>"year"</span>)
 <span class='no'>price_var</span>     <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"price_euro"</span>)
@@ -216,13 +226,15 @@ constraints from a Bertrand-Nash Oligopoly Model - NOT CURRENTLY IMPLEMENTED</p>
 #&gt; [1] "Nest ID is: class_id"</div><div class='input'><span class='co'>## Run regression</span>
 <span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'>estimate_demand</span>(<span class='kw'>df</span>             <span class='kw'>=</span> <span class='no'>df2</span>,
                         <span class='kw'>market_ids</span>    <span class='kw'>=</span> <span class='no'>mkts</span>,
+                        <span class='kw'>product_id</span>    <span class='kw'>=</span> <span class='st'>'model_id2'</span>,
                         <span class='kw'>market_share</span>  <span class='kw'>=</span> <span class='no'>mkt_share</span>,
                         <span class='kw'>outside_share</span> <span class='kw'>=</span> <span class='no'>outside_share</span>,
                         <span class='kw'>exog_charac</span>   <span class='kw'>=</span> <span class='no'>exog_var</span>,
                         <span class='kw'>price</span>         <span class='kw'>=</span> <span class='no'>price_var</span>,
                         <span class='kw'>nest_shares</span>   <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"within_nest"</span>),
-                        <span class='kw'>marketFE</span>      <span class='kw'>=</span> <span class='st'>"both"</span>)
-
+                        <span class='kw'>marketFE</span>      <span class='kw'>=</span> <span class='st'>"both"</span>,
+                        <span class='kw'>productFE</span>     <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "Estimation With Geographic and Time Fixed Effects"
+#&gt; [1] "Estimation With Product Fixed Effects"</div><div class='input'>
 <span class='co'># Regression With Two Level Nest</span>
 <span class='no'>mkts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_markets.html'>create_markets</a></span>(<span class='kw'>geog_id</span> <span class='kw'>=</span> <span class='st'>"market_id"</span>, <span class='kw'>time_id</span> <span class='kw'>=</span> <span class='st'>"year"</span>)
 <span class='no'>price_var</span>     <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"price_euro"</span>)
@@ -243,12 +255,15 @@ constraints from a Bertrand-Nash Oligopoly Model - NOT CURRENTLY IMPLEMENTED</p>
 #&gt; [1] "Sub-Nest ID is: domestic"</div><div class='input'><span class='co'>## Run regression</span>
 <span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'>estimate_demand</span>(<span class='kw'>df</span>             <span class='kw'>=</span> <span class='no'>df2</span>,
                         <span class='kw'>market_ids</span>    <span class='kw'>=</span> <span class='no'>mkts</span>,
+                        <span class='kw'>product_id</span>    <span class='kw'>=</span> <span class='st'>'model_id2'</span>,
                         <span class='kw'>market_share</span>  <span class='kw'>=</span> <span class='no'>mkt_share</span>,
                         <span class='kw'>outside_share</span> <span class='kw'>=</span> <span class='no'>outside_share</span>,
                         <span class='kw'>exog_charac</span>   <span class='kw'>=</span> <span class='no'>exog_var</span>,
                         <span class='kw'>price</span>         <span class='kw'>=</span> <span class='no'>price_var</span>,
                         <span class='kw'>nest_shares</span>   <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"within_nest"</span>, <span class='st'>"within_subnest"</span>),
-                        <span class='kw'>marketFE</span>      <span class='kw'>=</span> <span class='st'>"both"</span>)</div></pre>
+                        <span class='kw'>marketFE</span>      <span class='kw'>=</span> <span class='st'>"both"</span>,
+                        <span class='kw'>productFE</span>     <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "Estimation With Geographic and Time Fixed Effects"
+#&gt; [1] "Estimation With Product Fixed Effects"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

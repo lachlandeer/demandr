@@ -4,7 +4,7 @@
 \alias{create_fe}
 \title{Create Partial Formula for Fixed Effects}
 \usage{
-create_fe(market_ids, market_fe = "both")
+create_fe(market_ids, product_id, market_fe = "both", product_fe = TRUE)
 }
 \arguments{
 \item{market_ids}{List of variables contaning market identifiers}

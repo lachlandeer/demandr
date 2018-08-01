@@ -4,8 +4,8 @@
 \alias{create_equation}
 \title{Create Regression Equation for Demand Estimation}
 \usage{
-create_equation(market_ids, market_share, outside_share, exog_charac, price,
-  nest_shares, instruments = NULL, marketFE = "both")
+create_equation(market_ids, product_id, market_share, outside_share,
+  exog_charac, price, nest_shares, marketFE, productFE, instruments = NULL)
 }
 \arguments{
 \item{market_ids}{List of variables contaning market identifiers}
@@ -20,10 +20,10 @@ create_equation(market_ids, market_share, outside_share, exog_charac, price,
 
 \item{nest_shares}{Vector of nest share variables, as a character vector}
 
-\item{instruments}{Vector of instrument names, as a character vector}
-
 \item{marketFE}{Character string of which market fixed effects to contain,
 takes value "both", "geog" or "time"}
+
+\item{instruments}{Vector of instrument names, as a character vector}
 }
 \value{
 A regression formula.

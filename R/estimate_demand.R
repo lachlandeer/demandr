@@ -35,11 +35,13 @@
 #' ## Run regression
 #' reg <- estimate_demand(df             = df2,
 #'                         market_ids    = mkts,
+#'                         product_id    = 'model_id2',
 #'                         market_share  = mkt_share,
 #'                         outside_share = outside_share,
 #'                         exog_charac   = exog_var,
 #'                         price         = price_var,
-#'                         marketFE      = "both")
+#'                         marketFE      = "both",
+#'                         productFE     = TRUE)
 #'
 #' # Regression With One Level Nest
 #' mkts <- create_markets(geog_id = "market_id", time_id = "year")
@@ -57,12 +59,14 @@
 #' ## Run regression
 #' reg <- estimate_demand(df             = df2,
 #'                         market_ids    = mkts,
+#'                         product_id    = 'model_id2',
 #'                         market_share  = mkt_share,
 #'                         outside_share = outside_share,
 #'                         exog_charac   = exog_var,
 #'                         price         = price_var,
 #'                         nest_shares   = c("within_nest"),
-#'                         marketFE      = "both")
+#'                         marketFE      = "both",
+#'                         productFE     = TRUE)
 #'
 #' # Regression With Two Level Nest
 #' mkts <- create_markets(geog_id = "market_id", time_id = "year")
@@ -81,12 +85,14 @@
 #' ## Run regression
 #' reg <- estimate_demand(df             = df2,
 #'                         market_ids    = mkts,
+#'                         product_id    = 'model_id2',
 #'                         market_share  = mkt_share,
 #'                         outside_share = outside_share,
 #'                         exog_charac   = exog_var,
 #'                         price         = price_var,
 #'                         nest_shares   = c("within_nest", "within_subnest"),
-#'                         marketFE      = "both")
+#'                         marketFE      = "both",
+#'                         productFE     = TRUE)
 estimate_demand <- function(df,
                             market_ids,
                             product_id,

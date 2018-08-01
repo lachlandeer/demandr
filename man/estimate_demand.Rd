@@ -4,14 +4,16 @@
 \alias{estimate_demand}
 \title{Estimate a Demand Model From Aggregate Market Shares}
 \usage{
-estimate_demand(df, market_ids, market_share, outside_share, exog_charac, price,
-  nest_shares = NULL, instruments = NULL, marketFE = "both",
-  supply_side = FALSE)
+estimate_demand(df, market_ids, product_id, market_share, outside_share,
+  exog_charac, price, nest_shares = NULL, instruments = NULL,
+  productFE = TRUE, marketFE = "both", supply_side = FALSE)
 }
 \arguments{
 \item{df}{Dataframe to containing data to be used in estimation}
 
 \item{market_ids}{List of variables contaning market identifiers}
+
+\item{product_id}{Variable containing product identifier}
 
 \item{market_share}{Variable containing product market shares, as a character string}
 
@@ -24,6 +26,8 @@ estimate_demand(df, market_ids, market_share, outside_share, exog_charac, price,
 \item{nest_shares}{Vector of nest share variables, as a character vector}
 
 \item{instruments}{Vector of instrument names, as a character vector - NOT CURRENTLY IMPLEMENTED}
+
+\item{productFE}{Logical variable, \code{TRUE} leads to estimation with product fixed effects}
 
 \item{marketFE}{Character string of which market fixed effects to contain,
 takes value "both", "geog" or "time"}
@@ -53,11 +57,13 @@ df2  <- create_shares(df, market_id  = mkts,
 ## Run regression
 reg <- estimate_demand(df             = df2,
                         market_ids    = mkts,
+                        product_id    = 'model_id2',
                         market_share  = mkt_share,
                         outside_share = outside_share,
                         exog_charac   = exog_var,
                         price         = price_var,
-                        marketFE      = "both")
+                        marketFE      = "both",
+                        productFE     = TRUE)
 
 # Regression With One Level Nest
 mkts <- create_markets(geog_id = "market_id", time_id = "year")
@@ -75,12 +81,14 @@ df2  <- create_shares(df, market_id  = mkts,
 ## Run regression
 reg <- estimate_demand(df             = df2,
                         market_ids    = mkts,
+                        product_id    = 'model_id2',
                         market_share  = mkt_share,
                         outside_share = outside_share,
                         exog_charac   = exog_var,
                         price         = price_var,
                         nest_shares   = c("within_nest"),
-                        marketFE      = "both")
+                        marketFE      = "both",
+                        productFE     = TRUE)
 
 # Regression With Two Level Nest
 mkts <- create_markets(geog_id = "market_id", time_id = "year")
@@ -99,10 +107,12 @@ df2  <- create_shares(df, market_id  = mkts,
 ## Run regression
 reg <- estimate_demand(df             = df2,
                         market_ids    = mkts,
+                        product_id    = 'model_id2',
                         market_share  = mkt_share,
                         outside_share = outside_share,
                         exog_charac   = exog_var,
                         price         = price_var,
                         nest_shares   = c("within_nest", "within_subnest"),
-                        marketFE      = "both")
+                        marketFE      = "both",
+                        productFE     = TRUE)
 }

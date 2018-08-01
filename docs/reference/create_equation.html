@@ -120,8 +120,8 @@
     <p>Create Regression Equation for Demand Estimation</p>
     
 
-    <pre class="usage"><span class='fu'>create_equation</span>(<span class='no'>market_ids</span>, <span class='no'>market_share</span>, <span class='no'>outside_share</span>, <span class='no'>exog_charac</span>, <span class='no'>price</span>,
-  <span class='no'>nest_shares</span>, <span class='kw'>instruments</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>marketFE</span> <span class='kw'>=</span> <span class='st'>"both"</span>)</pre>
+    <pre class="usage"><span class='fu'>create_equation</span>(<span class='no'>market_ids</span>, <span class='no'>product_id</span>, <span class='no'>market_share</span>, <span class='no'>outside_share</span>,
+  <span class='no'>exog_charac</span>, <span class='no'>price</span>, <span class='no'>nest_shares</span>, <span class='no'>marketFE</span>, <span class='no'>productFE</span>, <span class='kw'>instruments</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,13 +151,13 @@
       <td><p>Vector of nest share variables, as a character vector</p></td>
     </tr>
     <tr>
-      <th>instruments</th>
-      <td><p>Vector of instrument names, as a character vector</p></td>
-    </tr>
-    <tr>
       <th>marketFE</th>
       <td><p>Character string of which market fixed effects to contain,
 takes value "both", "geog" or "time"</p></td>
+    </tr>
+    <tr>
+      <th>instruments</th>
+      <td><p>Vector of instrument names, as a character vector</p></td>
     </tr>
     </table>
     
