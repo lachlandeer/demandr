@@ -153,16 +153,19 @@ create_fe <- function(market_ids, product_id,
 
     # Create FE for Market Variables
     if(market_fe == "both"){
+        print('Estimation With Geographic and Time Fixed Effects')
         #mkt_fe <- unlist(market_ids)
         mkt_fe <- lapply("as.factor(", paste, unlist(market_ids), ")",
                         sep = "")[[1]]
         mkt_fe <- paste(mkt_fe, collapse = "+")
         #return(mkt_fe)
     } else if(market_fe == "geog") {
+        print('Estimation With Only Geographic Fixed Effects')
         mkt_fe <- lapply("as.factor(", paste, unlist(market_ids$geog_id), ")",
                         sep = "")[[1]]
         #return(mkt_fe)
     } else if (market_fe == "time"){
+        print('Estimation With Only Time Fixed Effects')
         mkt_fe <- lapply("as.factor(", paste, unlist(market_ids$time_id), ")",
                         sep = "")[[1]]
         #return(mkt_fe)
@@ -170,19 +173,23 @@ create_fe <- function(market_ids, product_id,
 
     # Create FE for Product Variables & bind to Market FE
     if(product_fe == TRUE){
+        print('Estimation With Product Fixed Effects')
         prod_fe <- lapply("as.factor(", paste, product_id, ")",
                         sep = "")[[1]]
         prod_fe <-  paste(prod_fe, collapse = "+")
         # combine
         fixed_effects <- c(mkt_fe, prod_fe)
         fe_formula   <- paste(fixed_effects, collapse = "+")
-    }
-    else{
+
+        return(fe_formula)
+    }else if(product_fe == FALSE){
+        print('Estimation Without Product Fixed Effects')
         fixed_effects <- mkt_fe
         fe_formula    <- fixed_effects
+
+        return(fe_formula)
     }
     # end
-    return(fe_formula)
 }
 
 #' Create Regression Equation for Demand Estimation
