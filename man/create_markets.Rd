@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_markets.R
 \name{create_markets}
 \alias{create_markets}
-\title{Add together two numbers.}
+\title{Create list of market identifiers.}
 \usage{
 create_markets(geog_id, time_id)
 }
@@ -15,7 +15,7 @@ create_markets(geog_id, time_id)
 A list containing \code{geog_id} and \code{time_id}.
 }
 \description{
-Add together two numbers.
+Create list of market identifiers.
 }
 \examples{
 # cross section data
