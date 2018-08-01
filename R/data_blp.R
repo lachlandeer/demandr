@@ -1,0 +1,30 @@
+#' Automobile Sales in the United States
+#'
+#'
+#' Annual model-level car sales in the United States
+#'
+#' Data Source: Berry, Levinsohn and Pakes, 1995, "Automobile Prices in Market Equilibrium",
+#' Econometrica
+#'
+#' @format A data.frame with 2217 observations on 13 variables:
+#' \itemize{
+#'  \item \strong{model_name:} Name of car model
+#'  \item \strong{model_id:} Numeric identifier for car model
+#'  \item \strong{firm_id:} Numeric identifier for production firm
+#'  \item \strong{time_id:} Numeric identifier for year of sale
+#'  \item \strong{price:} price - mean(price)
+#'  \item \strong{mpd:} Miles per dollar
+#'  \item \strong{air:} ==1 if car has airconditioning
+#'  \item \strong{mpg:} Miles per gallon
+#'  \item \strong{space:} Space inside vehicle
+#'  \item \strong{hpwt:} Horsepower per pound
+#'  \item \strong{share:} Market share of vehicle
+#'  \item \strong{outshr:} Outside share
+#'  \item \strong{y:} outcome variable defined as log(share) - log(outshr)
+#' }
+#'
+#' @docType data
+#' @name blp_1995
+#' @usage data('blp_1995')
+#' @examples  str(blp_1995)
+"blp_1995"
