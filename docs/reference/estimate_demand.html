@@ -177,17 +177,17 @@ constraints from a Bertrand-Nash Oligopoly Model - NOT CURRENTLY IMPLEMENTED</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Regression With Two Level Nest</span>
+    <pre class="examples"><div class='input'><span class='co'># Regression Without Nests</span>
 <span class='no'>mkts</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='create_markets.html'>create_markets</a></span>(<span class='kw'>geog_id</span> <span class='kw'>=</span> <span class='st'>"market_id"</span>, <span class='kw'>time_id</span> <span class='kw'>=</span> <span class='st'>"year"</span>)
 <span class='no'>price_var</span>     <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"price_euro"</span>)
 <span class='no'>exog_var</span>      <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"kilowatts"</span>, <span class='st'>"fueleff_avg"</span>, <span class='st'>"width"</span>, <span class='st'>"height"</span>, <span class='st'>"domestic"</span>)
 <span class='no'>mkt_share</span>     <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"mkt_share"</span>)
 <span class='no'>outside_share</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"outside_share"</span>)
 <span class='co'>## Create Shares</span>
-<span class='no'>df</span>   <span class='kw'>&lt;-</span> <span class='fu'>mkt_share_from_sales</span>(<span class='no'>eurocars</span>,
+<span class='no'>df</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='mkt_share_from_sales.html'>mkt_share_from_sales</a></span>(<span class='no'>eurocars</span>,
                                <span class='kw'>quantity</span>   <span class='kw'>=</span> <span class='st'>'qty_sold'</span>,
                                <span class='kw'>population</span> <span class='kw'>=</span> <span class='st'>'population'</span>)
-<span class='no'>df2</span>  <span class='kw'>&lt;-</span> <span class='fu'>create_shares</span>(<span class='no'>df</span>, <span class='kw'>market_id</span>  <span class='kw'>=</span> <span class='no'>mkts</span>,
+<span class='no'>df2</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='create_shares.html'>create_shares</a></span>(<span class='no'>df</span>, <span class='kw'>market_id</span>  <span class='kw'>=</span> <span class='no'>mkts</span>,
                           <span class='kw'>mkt_share</span>  <span class='kw'>=</span> <span class='st'>'mkt_share'</span>)</div><div class='output co'>#&gt; [1] "Creating Outside Share..."
 #&gt; [1] "Done!"</div><div class='input'><span class='co'>## Run regression</span>
 <span class='no'>reg</span> <span class='kw'>&lt;-</span> <span class='fu'>estimate_demand</span>(<span class='kw'>df</span>             <span class='kw'>=</span> <span class='no'>df2</span>,
@@ -205,10 +205,10 @@ constraints from a Bertrand-Nash Oligopoly Model - NOT CURRENTLY IMPLEMENTED</p>
 <span class='no'>mkt_share</span>     <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"mkt_share"</span>)
 <span class='no'>outside_share</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"outside_share"</span>)
 <span class='co'>## Create Shares</span>
-<span class='no'>df</span>   <span class='kw'>&lt;-</span> <span class='fu'>mkt_share_from_sales</span>(<span class='no'>eurocars</span>,
+<span class='no'>df</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='mkt_share_from_sales.html'>mkt_share_from_sales</a></span>(<span class='no'>eurocars</span>,
                                <span class='kw'>quantity</span>   <span class='kw'>=</span> <span class='st'>'qty_sold'</span>,
                                <span class='kw'>population</span> <span class='kw'>=</span> <span class='st'>'population'</span>)
-<span class='no'>df2</span>  <span class='kw'>&lt;-</span> <span class='fu'>create_shares</span>(<span class='no'>df</span>, <span class='kw'>market_id</span>  <span class='kw'>=</span> <span class='no'>mkts</span>,
+<span class='no'>df2</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='create_shares.html'>create_shares</a></span>(<span class='no'>df</span>, <span class='kw'>market_id</span>  <span class='kw'>=</span> <span class='no'>mkts</span>,
                           <span class='kw'>mkt_share</span>  <span class='kw'>=</span> <span class='st'>'mkt_share'</span>,
                           <span class='kw'>nest_id</span>    <span class='kw'>=</span> <span class='st'>'class_id'</span>)</div><div class='output co'>#&gt; [1] "Creating Outside Share..."
 #&gt; [1] "Done!"
@@ -230,10 +230,10 @@ constraints from a Bertrand-Nash Oligopoly Model - NOT CURRENTLY IMPLEMENTED</p>
 <span class='no'>mkt_share</span>     <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"mkt_share"</span>)
 <span class='no'>outside_share</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"outside_share"</span>)
 <span class='co'>## Create Shares</span>
-<span class='no'>df</span>   <span class='kw'>&lt;-</span> <span class='fu'>mkt_share_from_sales</span>(<span class='no'>eurocars</span>,
+<span class='no'>df</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='mkt_share_from_sales.html'>mkt_share_from_sales</a></span>(<span class='no'>eurocars</span>,
                                <span class='kw'>quantity</span>   <span class='kw'>=</span> <span class='st'>'qty_sold'</span>,
                                <span class='kw'>population</span> <span class='kw'>=</span> <span class='st'>'population'</span>)
-<span class='no'>df2</span>  <span class='kw'>&lt;-</span> <span class='fu'>create_shares</span>(<span class='no'>df</span>, <span class='kw'>market_id</span>  <span class='kw'>=</span> <span class='no'>mkts</span>,
+<span class='no'>df2</span>  <span class='kw'>&lt;-</span> <span class='fu'><a href='create_shares.html'>create_shares</a></span>(<span class='no'>df</span>, <span class='kw'>market_id</span>  <span class='kw'>=</span> <span class='no'>mkts</span>,
                           <span class='kw'>mkt_share</span>  <span class='kw'>=</span> <span class='st'>'mkt_share'</span>,
                           <span class='kw'>nest_id</span>    <span class='kw'>=</span> <span class='st'>'class_id'</span>,
                           <span class='kw'>subnest_id</span> <span class='kw'>=</span> <span class='st'>'domestic'</span>)</div><div class='output co'>#&gt; [1] "Creating Outside Share..."

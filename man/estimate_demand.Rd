@@ -38,7 +38,7 @@ Returns an object of class "lm" when instruments = FALSE
 Estimate a Demand Model From Aggregate Market Shares
 }
 \examples{
-# Regression With Two Level Nest
+# Regression Without Nests
 mkts <- create_markets(geog_id = "market_id", time_id = "year")
 price_var     <- c("price_euro")
 exog_var      <- c("kilowatts", "fueleff_avg", "width", "height", "domestic")

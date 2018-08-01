@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-#' # Regression With Two Level Nest
+#' # Regression Without Nests
 #' mkts <- create_markets(geog_id = "market_id", time_id = "year")
 #' price_var     <- c("price_euro")
 #' exog_var      <- c("kilowatts", "fueleff_avg", "width", "height", "domestic")
@@ -120,7 +120,18 @@ estimate_demand <- function(df,
 #'
 #' @return A character string with a partial formula of product characteristics and nest shares.
 create_lhs <- function(exog_charac, price, nest_shares){
-    lhs_variables <- c(exog_charac, price, nest_shares)
+
+    # get log of nest shares if is not null
+    if (!is.null(nest_shares)){
+        #nest_shares <- unlist(nest_shares)
+        log_nest_shares <- lapply("log(", paste, unlist(nest_shares), ")",
+                        sep = "")[[1]]
+        lhs_variables <- c(exog_charac, price, log_nest_shares)
+    }
+    if (is.null(nest_shares)){
+        lhs_variables <- c(exog_charac, price)
+    }
+
     lhs_formula   <- paste(lhs_variables, collapse = "+")
     return(lhs_formula)
 }
