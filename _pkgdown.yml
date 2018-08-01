@@ -14,5 +14,16 @@ template:
     #   api_key: fbd8d79ed49f21fc9ca7b2cf601a3f5b
     #   index_name: pkgdown
 
+reference:
+  - title: Functions
+    contents:
+    - create_markets
+    - mkt_share_from_sales
+  - title: Data
+    contents:
+    - analgesics
+    - eurocars
+    - jets
+
 development:
   mode: unreleased
