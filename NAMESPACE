@@ -2,4 +2,5 @@
 
 export(compute_outside_share)
 export(create_markets)
+export(create_shares)
 export(mkt_share_from_sales)
