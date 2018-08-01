@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create list of market identifiers. — create_markets • demandr</title>
+<title>Create Market Shares from Quantity Sold — mkt_share_from_sales • demandr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Create list of market identifiers. — create_markets" />
+<meta property="og:title" content="Create Market Shares from Quantity Sold — mkt_share_from_sales" />
 
-<meta property="og:description" content="Create list of market identifiers." />
+<meta property="og:description" content="Create Market Shares from Quantity Sold" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,49 +111,55 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create list of market identifiers.</h1>
-    <small>Source: <a href='https://github.com/lachlandeer/demandr/blob/master/R/create_markets.R'><code>R/create_markets.R</code></a></small>
-    <div class="hidden name"><code>create_markets.Rd</code></div>
+    <h1>Create Market Shares from Quantity Sold</h1>
+    <small>Source: <a href='https://github.com/lachlandeer/demandr/blob/master/R/create_shares.R'><code>R/create_shares.R</code></a></small>
+    <div class="hidden name"><code>mkt_share_from_sales.Rd</code></div>
     </div>
 
     
-    <p>Create list of market identifiers.</p>
+    <p>Create Market Shares from Quantity Sold</p>
     
 
-    <pre class="usage"><span class='fu'>create_markets</span>(<span class='no'>geog_id</span>, <span class='no'>time_id</span>)</pre>
+    <pre class="usage"><span class='fu'>mkt_share_from_sales</span>(<span class='no'>df</span>, <span class='no'>quantity</span>, <span class='no'>population</span>, <span class='kw'>frac_pop</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>geog_id</th>
-      <td><p>Variable that represents geographical market identifier as a string.</p></td>
+      <th>df</th>
+      <td><p>Dataframe to work with</p></td>
     </tr>
     <tr>
-      <th>time_id</th>
-      <td><p>Variable that represents time identifier as a string.</p></td>
+      <th>quantity</th>
+      <td><p>Variable containing number of goods sold, as a character string.</p></td>
+    </tr>
+    <tr>
+      <th>population</th>
+      <td><p>Variable containing number of number of individuals
+in the market, as a string.</p></td>
+    </tr>
+    <tr>
+      <th>frac_pop</th>
+      <td><p>Fraction of population to use when obtaining
+market shares, between 0 and 1.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list containing <code>geog_id</code> and <code>time_id</code>.</p>
+    <p>A dataframe with the variable <code>mkt_share</code> added as a column.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># cross section data</span>
-<span class='fu'>create_markets</span>(<span class='kw'>geog_id</span> <span class='kw'>=</span> <span class='st'>"state"</span>, <span class='kw'>time_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</div><div class='output co'>#&gt; $geog_id
-#&gt; [1] "state"
-#&gt; </div><div class='input'><span class='co'># time series data</span>
-<span class='fu'>create_markets</span>(<span class='kw'>geog_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>time_id</span> <span class='kw'>=</span> <span class='st'>"year"</span>)</div><div class='output co'>#&gt; $time_id
-#&gt; [1] "year"
-#&gt; </div><div class='input'><span class='co'># panel data</span>
-<span class='fu'>create_markets</span>(<span class='kw'>geog_id</span> <span class='kw'>=</span> <span class='st'>"state"</span>, <span class='kw'>time_id</span> <span class='kw'>=</span> <span class='st'>"year"</span>)</div><div class='output co'>#&gt; $geog_id
-#&gt; [1] "state"
-#&gt; 
-#&gt; $time_id
-#&gt; [1] "year"
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Relevant market is entire population</span>
+<span class='no'>new_df</span> <span class='kw'>&lt;-</span> <span class='fu'>mkt_share_from_sales</span>(<span class='no'>eurocars</span>,
+                               <span class='kw'>quantity</span>   <span class='kw'>=</span> <span class='st'>'qty_sold'</span>,
+                               <span class='kw'>population</span> <span class='kw'>=</span> <span class='st'>'population'</span>)
+<span class='co'># Relevant market is 1/2 the entire population</span>
+<span class='no'>new_df</span> <span class='kw'>&lt;-</span> <span class='fu'>mkt_share_from_sales</span>(<span class='no'>eurocars</span>,
+                               <span class='kw'>quantity</span>   <span class='kw'>=</span> <span class='st'>'qty_sold'</span>,
+                               <span class='kw'>population</span> <span class='kw'>=</span> <span class='st'>'population'</span>,
+                               <span class='kw'>frac_pop</span>   <span class='kw'>=</span>  <span class='fl'>0.5</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
