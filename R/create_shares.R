@@ -46,7 +46,7 @@ gen_nest_share <- function(df, mkt_share, market_id, nest_id){
     nest_share <- df %>%
             dplyr::group_by(!!! rlang::syms(mkt_and_nests)) %>%
             dplyr::mutate(nest_share = sum(!!! rlang::sym(mkt_share))) %>%
-            ungroup()
+            dplyr::ungroup()
 }
 
 ## dplyr approach to subnest share (testing)
@@ -60,7 +60,7 @@ gen_subnest_share <- function(df, mkt_share, market_id, nest_id, subnest_id){
     nest_share <- df %>%
             dplyr::group_by(!!! rlang::syms(mkt_and_nests)) %>%
             dplyr::mutate(subnest_share = sum(!!! rlang::sym(mkt_share))) %>%
-            ungroup()
+            dplyr::ungroup()
 }
 
 gen_within_share <- function(df, mkt_share, nest_share, subnest_share = NULL){
@@ -82,7 +82,8 @@ gen_within_share <- function(df, mkt_share, nest_share, subnest_share = NULL){
 # share for two level nests
 within_share_two_nest <- function(df, mkt_share, nest_share, subnest_share){
     output <- df %>%
-                mutate(within_subnest = (!!rlang::sym(mkt_share)) /
+                dplyr::mutate(
+                       within_subnest = (!!rlang::sym(mkt_share)) /
                                             (!!rlang::sym(subnest_share)),
                        within_nest    = (!!rlang::sym(subnest_share)) /
                                             (!!rlang::sym(nest_share))
@@ -94,13 +95,53 @@ within_share_two_nest <- function(df, mkt_share, nest_share, subnest_share){
 within_share_one_nest <- function(df, mkt_share, nest_share){
 
     output <- df %>%
-                mutate(
+                dplyr::mutate(
                        within_nest    = (!!rlang::sym(mkt_share)) /
                                             (!!rlang::sym(nest_share))
                     )
     return(output)
 }
 
+#' Compute Share of Outside Good and Nest Shares
+#'
+#' @param df Dataframe to work with
+#' @param market_id List of variables contaning market identifiers
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param outside_share Variable outside shares, as a character string.
+#' @param nest_id Variable contaning first level nest, as a character string.
+#' @param subnest_id Variable contaning second level nest, as a character string.
+#' @return A dataframe with the outside- and nest-shares added.
+#'
+#' @export
+#'
+#' @examples
+#' # Add Outside Share and Nest Share for two Level Nest
+#' mkts <- create_markets(geog_id = "market_id", time_id = "year")
+#' df   <- mkt_share_from_sales(eurocars,
+#'                                quantity   = 'qty_sold',
+#'                                population = 'population')
+#' df2  <- create_shares(df, market_id  = mkts,
+#'                           mkt_share  = 'mkt_share',
+#'                           nest_id    = 'class_id',
+#'                           subnest_id = 'domestic')
+#' # Add Outside Share and Nest Share for One Level Nest
+#' mkts <- create_markets(geog_id = "market_id", time_id = "year")
+#' df   <- mkt_share_from_sales(eurocars,
+#'                                quantity   = 'qty_sold',
+#'                                population = 'population')
+#' df2  <- create_shares(df, market_id  = mkts,
+#'                           mkt_share  = 'mkt_share',
+#'                           nest_id    = 'class_id')
+#' # Add Nest Share for two Level Nest when outside share already computed
+#' mkts <- create_markets(geog_id = "market_id", time_id = "year")
+#' df   <- mkt_share_from_sales(eurocars,
+#'                                quantity   = 'qty_sold',
+#'                                population = 'population')
+#' df2  <- compute_outside_share(df, mkt_share = 'mkt_share', market_id = mkts)
+#' df3  <- create_shares(df2, market_id    = mkts,
+#'                            mkt_share     = 'mkt_share',
+#'                            outside_share = 'outside_share',
+#'                            nest_id       = 'class_id')
 create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
                          nest_id = NULL, subnest_id = NULL){
 
@@ -119,7 +160,7 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
                 gen_nest_share(., mkt_share, market_id, nest_id) %>%
                 gen_within_share(., mkt_share, nest_share = "nest_share",
                                  subnest_share = NULL) %>%
-            select(-nest_share)
+                dplyr::select(-nest_share)
     } #end if
 
     if(!is.null(nest_id) && !is.null(subnest_id)){
@@ -132,7 +173,7 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
                                     nest_id, subnest_id) %>%
                 gen_within_share(., mkt_share, nest_share = "nest_share",
                                 subnest_share = "subnest_share") %>%
-                select(-nest_share, -subnest_share)
+                dplyr::select(-nest_share, -subnest_share)
 
     } # endif
     return(df)
