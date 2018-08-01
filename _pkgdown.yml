@@ -29,6 +29,10 @@ reference:
   - title: Internal Functions
     desc:  Helper functions used within the package
     contents:
+        - create_equation
+        - create_lhs
+        - create_fe
+        - create_rhs
         - gen_nest_share
         - gen_subnest_share
         - gen_within_share
