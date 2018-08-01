@@ -16,10 +16,25 @@
     <loc>http://lachlandeer.github.io/demandr/reference/eurocars.html</loc>
   </url>
   <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/gen_nest_share.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/gen_subnest_share.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/gen_within_share.html</loc>
+  </url>
+  <url>
     <loc>http://lachlandeer.github.io/demandr/reference/jets.html</loc>
   </url>
   <url>
     <loc>http://lachlandeer.github.io/demandr/reference/mkt_share_from_sales.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/within_share_one_nest.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/within_share_two_nest.html</loc>
   </url>
   <url>
     <loc>http://lachlandeer.github.io/demandr/articles/Berry Logit Estimation.html</loc>
