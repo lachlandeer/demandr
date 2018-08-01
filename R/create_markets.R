@@ -4,6 +4,8 @@
 #' @param time_id Variable that represents time identifier as a string.
 #' @return A list containing \code{geog_id} and \code{time_id}.
 #'
+#' @export
+#'
 #' @examples
 #' # cross section data
 #' create_markets(geog_id = "state", time_id = NULL)
