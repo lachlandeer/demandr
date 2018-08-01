@@ -2,12 +2,14 @@
 #'
 #' @param df Dataframe to containing data to be used in estimation
 #' @param market_ids List of variables contaning market identifiers
+#' @param product_id Variable containing product identifier
 #' @param market_share Variable containing product market shares, as a character string
 #' @param outside_share Variable outside shares, as a character string
 #' @param exog_charac Vector of exogenous product characteristic variables, as a character vector
 #' @param price Variable containing market price, as a character string
 #' @param nest_shares Vector of nest share variables, as a character vector
 #' @param instruments Vector of instrument names, as a character vector - NOT CURRENTLY IMPLEMENTED
+#' @param productFE Logical variable, \code{TRUE} leads to estimation with product fixed effects
 #' @param marketFE Character string of which market fixed effects to contain,
 #'        takes value "both", "geog" or "time"
 #' @param supply_side Logical variable, \code{TRUE} leads to estimation with the
@@ -87,25 +89,29 @@
 #'                         marketFE      = "both")
 estimate_demand <- function(df,
                             market_ids,
+                            product_id,
                             market_share,
                             outside_share,
                             exog_charac,
                             price,
                             nest_shares = NULL,
                             instruments = NULL,
+                            productFE = TRUE,
                             marketFE = "both",
                             supply_side = FALSE
                             ){
     # estimate OLS Model with no supply side
     if(supply_side == FALSE && is.null(instruments)){
         estimating_equation <- create_equation(market_ids,
+                                                product_id,
                                                 market_share,
                                                 outside_share,
                                                 exog_charac,
                                                 price,
                                                 nest_shares,
                                                 instruments,
-                                                marketFE)
+                                                marketFE,
+                                                productFE)
 
         output <- lm(estimating_equation, data = df)
         return(output)
@@ -142,24 +148,41 @@ create_lhs <- function(exog_charac, price, nest_shares){
 #' @param market_fe Character string of which market fixed effects to contain,
 #'
 #' @return A character string with a partial formula for market fixed effetcs.
-create_fe <- function(market_ids, market_fe = "both"){
+create_fe <- function(market_ids, product_id,
+                        market_fe = "both", product_fe = TRUE){
 
+    # Create FE for Market Variables
     if(market_fe == "both"){
-        mkt_fe <- unlist(market_ids)
+        #mkt_fe <- unlist(market_ids)
         mkt_fe <- lapply("as.factor(", paste, unlist(market_ids), ")",
                         sep = "")[[1]]
         mkt_fe <- paste(mkt_fe, collapse = "+")
-        return(mkt_fe)
+        #return(mkt_fe)
     } else if(market_fe == "geog") {
         mkt_fe <- lapply("as.factor(", paste, unlist(market_ids$geog_id), ")",
                         sep = "")[[1]]
-        return(mkt_fe)
+        #return(mkt_fe)
     } else if (market_fe == "time"){
         mkt_fe <- lapply("as.factor(", paste, unlist(market_ids$time_id), ")",
                         sep = "")[[1]]
-        return(mkt_fe)
+        #return(mkt_fe)
     }
 
+    # Create FE for Product Variables & bind to Market FE
+    if(product_fe == TRUE){
+        prod_fe <- lapply("as.factor(", paste, product_id, ")",
+                        sep = "")[[1]]
+        prod_fe <-  paste(prod_fe, collapse = "+")
+        # combine
+        fixed_effects <- c(mkt_fe, prod_fe)
+        fe_formula   <- paste(fixed_effects, collapse = "+")
+    }
+    else{
+        fixed_effects <- mkt_fe
+        fe_formula    <- fixed_effects
+    }
+    # end
+    return(fe_formula)
 }
 
 #' Create Regression Equation for Demand Estimation
@@ -190,22 +213,28 @@ create_rhs <- function(mkt_share, out_share){
 #'
 #' @return A regression formula.
 create_equation <- function(market_ids,
+                            product_id,
                             market_share,
                             outside_share,
                             exog_charac,
                             price,
                             nest_shares,
                             instruments = NULL,
-                            marketFE = "both"){
+                            marketFE = "both",
+                            productFE = TRUE){
 
 
      y             <- create_rhs(market_share, outside_share)
      lhs_charac    <- create_lhs(exog_charac, price, nest_shares)
-     fixed_effects <- create_fe(market_ids, market_fe = marketFE)
+     fixed_effects <- create_fe(market_ids, product_id,
+                                market_fe = marketFE,
+                                product_fe = productFE)
 
     if (is.null(instruments)){
         est_eq <- paste(y, lhs_charac, sep = "~")
+        #print(est_eq)
         est_eq_fe <- as.formula(paste(est_eq, fixed_effects, sep = "+"))
+        #print(est_eq_fe)
     }
 
     return(est_eq_fe)
