@@ -1,7 +1,10 @@
 pandoc: 1.19.2.1
 pkgdown: 0.1.0.9000
 pkgdown_sha: 4e194be97890ace7225932cbc3b4380085aedcf8
-articles: []
+articles:
+  Berry Logit Estimation: Berry Logit Estimation.html
+  Single Nested Logit Estimation: Single Nested Logit Estimation.html
+  Two Nest Logit Estimation: Two Nest Logit Estimation.html
 urls:
   reference: http://lachlandeer.github.io/demandr/reference
   article: http://lachlandeer.github.io/demandr/articles

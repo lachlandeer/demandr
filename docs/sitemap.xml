@@ -4,9 +4,21 @@
     <loc>http://lachlandeer.github.io/demandr/reference/analgesics.html</loc>
   </url>
   <url>
+    <loc>http://lachlandeer.github.io/demandr/reference/create_markets.html</loc>
+  </url>
+  <url>
     <loc>http://lachlandeer.github.io/demandr/reference/eurocars.html</loc>
   </url>
   <url>
     <loc>http://lachlandeer.github.io/demandr/reference/jets.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/articles/Berry Logit Estimation.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/articles/Single Nested Logit Estimation.html</loc>
+  </url>
+  <url>
+    <loc>http://lachlandeer.github.io/demandr/articles/Two Nest Logit Estimation.html</loc>
   </url>
 </urlset>
