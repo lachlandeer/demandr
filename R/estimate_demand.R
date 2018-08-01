@@ -109,9 +109,9 @@ estimate_demand <- function(df,
                                                 exog_charac,
                                                 price,
                                                 nest_shares,
-                                                instruments,
                                                 marketFE,
-                                                productFE)
+                                                productFE,
+                                                instruments)
 
         output <- lm(estimating_equation, data = df)
         return(output)
@@ -219,9 +219,10 @@ create_equation <- function(market_ids,
                             exog_charac,
                             price,
                             nest_shares,
-                            instruments = NULL,
-                            marketFE = "both",
-                            productFE = TRUE){
+                            marketFE,
+                            productFE,
+                            instruments = NULL
+                            ){
 
 
      y             <- create_rhs(market_share, outside_share)
