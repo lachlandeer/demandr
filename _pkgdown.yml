@@ -20,6 +20,7 @@ reference:
     - compute_outside_share
     - create_markets
     - create_shares
+    - estimate_demand
     - mkt_share_from_sales
   - title: Data
     contents:
