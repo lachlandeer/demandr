@@ -1,5 +1,5 @@
 Package: demandr
-Title: What the Package Does (one line, title case)
+Title: Nested Logit Demand Estimation with Aggregate Market Shares
 Version: 0.0.0.9000
 Authors@R: c(
     person("Lachlan", "Deer", email = "lachlan.deer@gmail.com", role = c("aut", "cre")),
