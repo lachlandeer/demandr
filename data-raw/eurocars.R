@@ -16,7 +16,7 @@ eurocars <- eurocars %>%
                        domestic  = home,
                        firm_id = frm,
                        qty_sold = qu,
-                       cylinders = cy,
+                       displacement = cy,
                        kilowatts = hp,
                        weight = we,
                        n_seats = pl,
