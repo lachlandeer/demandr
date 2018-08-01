@@ -1,4 +1,4 @@
-#' analgesics: Weekly Sales of OTC Analgesics
+#' Weekly Sales of OTC Analgesics
 #'
 #'
 #' Weekly sales data of 11 analgesics products at the store level.

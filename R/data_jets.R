@@ -1,4 +1,4 @@
-#' jets: Annual Sales of Corporate Jets
+#' Annual Sales of Corporate Jets
 #'
 #'
 #' Annual model-level aircraft sales in the large-cabin segment of the businessjet market between 1985 and 1998.

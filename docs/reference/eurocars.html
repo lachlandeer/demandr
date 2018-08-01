@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>eurocars: Annual Sales of Cars in Europe — eurocars • demandr</title>
+<title>Annual Sales of Cars in Europe — eurocars • demandr</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,7 +25,7 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="eurocars: Annual Sales of Cars in Europe — eurocars" />
+<meta property="og:title" content="Annual Sales of Cars in Europe — eurocars" />
 
 <meta property="og:description" content="Annual model-level sales of cars in European countries between 1970 and 1999." />
 <meta name="twitter:card" content="summary" />
@@ -111,7 +111,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>eurocars: Annual Sales of Cars in Europe</h1>
+    <h1>Annual Sales of Cars in Europe</h1>
     <small>Source: <a href='https://github.com/lachlandeer/demandr/blob/master/R/data_eurocars.R'><code>R/data_eurocars.R</code></a></small>
     <div class="hidden name"><code>eurocars.Rd</code></div>
     </div>
@@ -125,8 +125,50 @@
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data.frame with 11,549 observations on 39 variables:</p><ul>
-<li><p><strong>To be Done:</strong> Numeric identifier for model of aircraft</p></li>
+<li><p><strong>year:</strong> Year of the observation</p></li>
+<li><p><strong>market_id:</strong> Numeric identifier for geographical market</p></li>
+<li><p><strong>model_id:</strong> Numeric identifier for the car</p></li>
+<li><p><strong>model_id2:</strong> Numeric identifier for the car with unified products when model number changes</p></li>
+<li><p><strong>type:</strong> Car Type</p></li>
+<li><p><strong>brand:</strong> Brand of Manufacturer</p></li>
+<li><p><strong>model:</strong> Car Model</p></li>
+<li><p><strong>origin_id:</strong> Numeric identifier for country of origin</p></li>
+<li><p><strong>location_id:</strong> Numeric identifier for location</p></li>
+<li><p><strong>class_id:</strong> Numeric vehicle class identifier</p></li>
+<li><p><strong>domestic:</strong> == 1 if produced domestically</p></li>
+<li><p><strong>firm_id:</strong> Numeric identifier for firm that produced vehicle</p></li>
+<li><p><strong>qty_sold:</strong> Quantity of cars sold</p></li>
+<li><p><strong>displacement:</strong> Engine capacity in cc</p></li>
+<li><p><strong>kilowatts:</strong> Engine Power in kilowatts</p></li>
+<li><p><strong>weight:</strong> Vehicle weight in kilograms</p></li>
+<li><p><strong>n_seats:</strong> Number of seats</p></li>
+<li><p><strong>n_doors:</strong> Number of doors</p></li>
+<li><p><strong>length:</strong> Vehicle length in cm</p></li>
+<li><p><strong>height:</strong> Vehicle height in cm</p></li>
+<li><p><strong>fueleff_90:</strong> Fuel Efficiency at 90 km/hr</p></li>
+<li><p><strong>fueleff_90:</strong> Fuel Efficiency at 120 km/hr</p></li>
+<li><p><strong>fueleff_city:</strong> Fuel Efficiency when driving in city</p></li>
+<li><p><strong>fueleff_avg:</strong> Average Fuel Efficiency</p></li>
+<li><p><strong>max_speed:</strong> Maximum speed in km/hr</p></li>
+<li><p><strong>accel:</strong> Time taken in seconds from 0 to 100 km/hr</p></li>
+<li><p><strong>price:</strong> Price in local currency</p></li>
+<li><p><strong>price_euro:</strong> Price in Euros</p></li>
+<li><p><strong>exchrate_exp:</strong> Exchange rate in exporting country</p></li>
+<li><p><strong>exchrate_imp:</strong> Exchange rate in importing country</p></li>
+<li><p><strong>cpi_exp:</strong> Consumer Price Index in exporting country</p></li>
+<li><p><strong>ppi_exp:</strong> Producer Price Index in exporting country</p></li>
+<li><p><strong>cpi_imp:</strong> Consumer Price Index in importing country</p></li>
+<li><p><strong>ppi_imp:</strong> Producer Price Index in importing country</p></li>
+<li><p><strong>tax:</strong> Tax rate on purchase</p></li>
+<li><p><strong>population:</strong> Country of sale's population</p></li>
+<li><p><strong>ngdp:</strong> Nominal GDP in country of sale</p></li>
+<li><p><strong>rgdp:</strong> Real GDP in country of sale</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Data Source: Brenkers and Verboven, 2006, "Liberalizing a Distribution System: The European Car Market",
+Journal of the European Economic Association</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -144,7 +186,7 @@
 #&gt;  $ domestic    : num  0 0 0 0 0 0 0 0 0 0 ...
 #&gt;  $ firm_id     : num  1 1 1 1 4 4 4 4 4 4 ...
 #&gt;  $ qty_sold    : num  729 1860 1771 2047 2147 ...
-#&gt;  $ cylinders   : num  1351 1351 1351 1351 1351 ...
+#&gt;  $ displacement: num  1351 1351 1351 1351 1351 ...
 #&gt;  $ kilowatts   : num  58 58 58 58 58 58 63 63 65 66 ...
 #&gt;  $ weight      : num  890 890 890 890 910 910 910 940 940 940 ...
 #&gt;  $ n_seats     : num  5 5 5 5 5 5 5 5 5 5 ...
@@ -176,6 +218,8 @@
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -3,7 +3,7 @@
 \docType{data}
 \name{analgesics}
 \alias{analgesics}
-\title{analgesics: Weekly Sales of OTC Analgesics}
+\title{Weekly Sales of OTC Analgesics}
 \format{A data.frame with 38544 observations on 8 variables:
 \itemize{
  \item \strong{store_id:} Numeric identifier for each store

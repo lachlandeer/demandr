@@ -3,7 +3,7 @@
 \docType{data}
 \name{jets}
 \alias{jets}
-\title{jets: Annual Sales of Corporate Jets}
+\title{Annual Sales of Corporate Jets}
 \format{A data.frame with 56 observations on 9 variables:
 \itemize{
  \item \strong{model_id:} Numeric identifier for model of aircraft

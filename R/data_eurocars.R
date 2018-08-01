@@ -1,4 +1,4 @@
-#' eurocars: Annual Sales of Cars in Europe
+#' Annual Sales of Cars in Europe
 #'
 #'
 #' Annual model-level sales of cars in European countries between 1970 and 1999.
