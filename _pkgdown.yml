@@ -26,6 +26,14 @@ reference:
     - analgesics
     - eurocars
     - jets
+  - title: Internal Functions
+    desc:  Helper functions used within the package
+    contents:
+        - gen_nest_share
+        - gen_subnest_share
+        - gen_within_share
+        - within_share_one_nest
+        - within_share_two_nest
 
 development:
   mode: unreleased
