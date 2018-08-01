@@ -35,7 +35,13 @@ compute_outside_share <- function(df, mkt_share, market_id) {
     return(outside_share)
 }
 
-## dplyr approach to nest share (testing)
+#' Calculate Within Shares for First Layer Nest
+#'
+#' @param df Dataframe to work with
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param nest_id Variable containing market share of nest, as a character string.
+#' @param subnest_id Variable containing market share of subnest, as a character string.
+#' @return A dataframe with the outside- and nest-shares added..
 gen_nest_share <- function(df, mkt_share, market_id, nest_id){
 
     # unpack market_ids to a vector so can group by easily
@@ -49,7 +55,13 @@ gen_nest_share <- function(df, mkt_share, market_id, nest_id){
             dplyr::ungroup()
 }
 
-## dplyr approach to subnest share (testing)
+#' Calculate Within Shares for Subnest Structure
+#'
+#' @param df Dataframe to work with
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param nest_id Variable containing market share of nest, as a character string.
+#' @param subnest_id Variable containing market share of subnest, as a character string.
+#' @return A dataframe with the outside- and nest-shares added.
 gen_subnest_share <- function(df, mkt_share, market_id, nest_id, subnest_id){
 
     # unpack market_ids to a vector so can group by easily
@@ -63,6 +75,13 @@ gen_subnest_share <- function(df, mkt_share, market_id, nest_id, subnest_id){
             dplyr::ungroup()
 }
 
+#' Calculate Within Shares for Nesting Structure
+#'
+#' @param df Dataframe to work with
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param nest_share Variable containing market share of nest, as a character string.
+#' @param subnest_share Variable containing market share of subnest, as a character string.
+#' @return A dataframe with the outside- and nest-shares added.
 gen_within_share <- function(df, mkt_share, nest_share, subnest_share = NULL){
     # if one level of nesting
     if(is.null(subnest_share)){
@@ -79,7 +98,13 @@ gen_within_share <- function(df, mkt_share, nest_share, subnest_share = NULL){
     }
 } # eof
 
-# share for two level nests
+#' Calculate Product level Within Shares for Two Layer Nest
+#'
+#' @param df Dataframe to work with
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param nest_share Variable containing market share of nest, as a character string.
+#' @param subnest_share Variable containing market share of subnest, as a character string.
+#' @return A dataframe with the outside- and nest-shares added.
 within_share_two_nest <- function(df, mkt_share, nest_share, subnest_share){
     output <- df %>%
                 dplyr::mutate(
@@ -91,12 +116,17 @@ within_share_two_nest <- function(df, mkt_share, nest_share, subnest_share){
     return(output)
 }
 
-# share for one level nests
+#' Calculate Product level Within Shares for One Layer Nest
+#'
+#' @param df Dataframe to work with
+#' @param mkt_share Variable containing product market shares, as a character string.
+#' @param nest_share Variable containing market share of nest, as a character string.
+#' @return A dataframe with the outside- and nest-shares added.
 within_share_one_nest <- function(df, mkt_share, nest_share){
 
     output <- df %>%
                 dplyr::mutate(
-                       within_nest    = (!!rlang::sym(mkt_share)) /
+                       within_nest = (!!rlang::sym(mkt_share)) /
                                             (!!rlang::sym(nest_share))
                     )
     return(output)
