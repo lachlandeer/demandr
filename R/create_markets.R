@@ -1,4 +1,4 @@
-#' Create list if market identifiers.
+#' Create list of market identifiers.
 #'
 #' @param geog_id Variable that represents geographical market identifier as a string.
 #' @param time_id Variable that represents time identifier as a string.

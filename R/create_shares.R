@@ -126,12 +126,33 @@ create_shares <- function(df, market_id, mkt_share, outside_share = NULL,
     return(df)
 }
 
-mkt_share_from_sales <- function(df, sales, population, adjust_factor = 1){
-    
+#' Create Market Shares from Quantity Sold
+#'
+#' @param df Dataframe to work with
+#' @param quantity Variable containing number of goods sold, as a character string.
+#' @param population Variable containing number of number of individuals
+#'        in the market, as a string.
+#' @param frac_pop Fraction of population to use when obtaining
+#'        market shares, between 0 and 1.
+#' @return A dataframe with the variable \code{mkt_share} added as a column.
+#'
+#' @export
+#'
+#' @examples
+#' # Relevant market is entire population
+#' new_df <- mkt_share_from_sales(eurocars,
+#'                                quantity   = 'qty_sold',
+#'                                population = 'population')
+#' # Relevant market is 1/2 the entire population
+#' new_df <- mkt_share_from_sales(eurocars,
+#'                                quantity   = 'qty_sold',
+#'                                population = 'population',
+#'                                frac_pop   =  0.5)
+mkt_share_from_sales <- function(df, quantity, population, frac_pop = 1){
     output <- df %>%
-        mutate(
-            mkt_share    = !!rlang::sym(sales) /
-                            (adjust_factor * !!rlang::sym(population))
+        dplyr::mutate(
+            mkt_share = !!rlang::sym(quantity) /
+                            (frac_pop * !!rlang::sym(population))
         )
     return(output)
 }
